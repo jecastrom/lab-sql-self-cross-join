@@ -86,6 +86,10 @@ FROM
 LIMIT
     10;
 ```
+```
+Without the limit: 14915 row(s) returned
+
+```
 
 image::https://user-images.githubusercontent.com/63274055/150612854-3cf68969-3079-491e-9e23-dbafe19678fb.png[width=600]
 
