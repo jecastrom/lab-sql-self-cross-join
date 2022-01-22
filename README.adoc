@@ -138,6 +138,36 @@ image::https://user-images.githubusercontent.com/63274055/150620426-fdfbb314-644
 
 == Get all possible pairs of actors and films.
 
+`*_Answer:_*`
+
+```sql
+SELECT
+    f.title AS film_title,
+    CONCAT(a1.first_name, ' ', a1.last_name) AS actor_1,
+    CONCAT(a2.first_name, ' ', a2.last_name) AS actor_2
+FROM
+    film_actor f1
+    INNER JOIN film_actor f2 ON f1.actor_id > f2.actor_id
+    AND f1.film_id = f2.film_id
+    INNER JOIN actor a1 ON f1.actor_id = a1.actor_id
+    INNER JOIN actor a2 ON f2.actor_id = a2.actor_id
+    INNER JOIN film f ON f1.film_id = f.film_id
+ORDER BY
+    1,
+    2,
+    3
+LIMIT
+    5;
+```
+
+```
+Without the limit: 14915 row(s) returned
+```
+
+image::https://user-images.githubusercontent.com/63274055/150638378-8dc48295-8062-439e-bcaa-847dedc8ec95.png[width=600]
+
+
+
 ====
 ''''
 ====
