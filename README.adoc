@@ -181,7 +181,7 @@ image::https://user-images.githubusercontent.com/63274055/150638378-8dc48295-806
 
 
 
-xref:Lab-SQL-Self-and-cross join[Top Section]
+xref:Lab-SQL-Self-and-cross-join[Top Section]
 
 xref:Get-all-possible-pairs-of-actors-and-films[Bottom section]
 
