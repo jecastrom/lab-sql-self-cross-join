@@ -136,7 +136,7 @@ image::https://user-images.githubusercontent.com/63274055/150620426-fdfbb314-644
 
 
 
-== Get all possible pairs of actors and films.
+== Get all possible pairs of actors and films
 
 `*_Answer:_*`
 
@@ -183,7 +183,7 @@ image::https://user-images.githubusercontent.com/63274055/150638378-8dc48295-806
 
 xref:Lab-SQL-Self-and-cross join[Top Section]
 
-xref:Last-section[Bottom section]
+xref:Get-all-possible-pairs-of-actors-and-films[Bottom section]
 
 //bla bla blafootnote:[{fn-xxx}]
 
