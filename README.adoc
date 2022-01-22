@@ -97,6 +97,45 @@ image::https://user-images.githubusercontent.com/63274055/150612854-3cf68969-307
 
 == Get all pairs of customers that have rented the same film more than 3 times.
 
+`*_Answer:_*`
+
+```sql
+SELECT
+    c1.customer_id,
+    concat(c1.first_name, ' ', c1.last_name) AS customer_name1,
+    c2.customer_id,
+    concat(c2.first_name, ' ', c2.last_name) AS customer_name2,
+    count(r1.rental_id) AS number_of_rents_over_3_times
+FROM
+    customer c1
+    INNER JOIN rental r1 ON r1.customer_id = c1.customer_id
+    INNER JOIN inventory i1 ON i1.inventory_id = r1.inventory_id
+    INNER JOIN film f1 ON i1.film_id = f1.film_id
+    INNER JOIN inventory i2 ON f1.film_id = i2.film_id
+    INNER JOIN rental r2 ON i2.inventory_id = r2.inventory_id
+    INNER JOIN customer c2 ON r2.customer_id = c2.customer_id
+WHERE
+    c1.customer_id != c2.customer_id
+GROUP BY
+    1,
+    3
+HAVING
+    count(*) > 3
+ORDER BY
+    5 DESC
+LIMIT
+    10;
+```
+
+```
+Without limit 10: 4304 row(s) returned
+
+```
+
+image::https://user-images.githubusercontent.com/63274055/150620426-fdfbb314-644e-4fe2-8c2a-e4c7254ba8a4.png[width=600]
+
+
+
 == Get all possible pairs of actors and films.
 
 ====

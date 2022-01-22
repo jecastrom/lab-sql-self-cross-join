@@ -1,15 +1,25 @@
 SELECT
-    f1.film_id,
-    f.title AS film_title,
-    f1.actor_id,
-    concat(a.first_name, ' ', a.last_name) AS actor_1,
-    f2.actor_id,
-    concat(a.first_name, ' ', a.last_name) AS actor_2
+    c1.customer_id,
+    concat(c1.first_name, ' ', c1.last_name) AS customer_name1,
+    c2.customer_id,
+    concat(c2.first_name, ' ', c2.last_name) AS customer_name2,
+    count(r1.rental_id) AS number_of_rents_over_3_times
 FROM
-    film_actor f1
-    INNER JOIN film_actor f2 ON f1.film_id = f2.film_id
-    AND f1.actor_id < f2.actor_id
-    INNER JOIN film f ON f.film_id = f1.film_id
-    INNER JOIN actor a ON f1.actor_id = a.actor_id
+    customer c1
+    INNER JOIN rental r1 ON r1.customer_id = c1.customer_id
+    INNER JOIN inventory i1 ON i1.inventory_id = r1.inventory_id
+    INNER JOIN film f1 ON i1.film_id = f1.film_id
+    INNER JOIN inventory i2 ON f1.film_id = i2.film_id
+    INNER JOIN rental r2 ON i2.inventory_id = r2.inventory_id
+    INNER JOIN customer c2 ON r2.customer_id = c2.customer_id
+WHERE
+    c1.customer_id != c2.customer_id
+GROUP BY
+    1,
+    3
+HAVING
+    count(*) > 3
+ORDER BY
+    5 DESC
 LIMIT
     10;
